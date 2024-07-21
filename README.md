@@ -21,5 +21,5 @@ The system is composed of a client, a server, and a database. The client interac
 - **Database:** MongoDB, Mongoose
 - **Testing:** Jest, Cypress
 - **CSS Framework:** Tailwind CSS
-- **Deployment:** Heroku // GitHub Pages
+- **Deployment:** Heroku
 - **AI Solutions Provider:** Gemini API
