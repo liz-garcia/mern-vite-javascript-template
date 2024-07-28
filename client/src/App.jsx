@@ -8,15 +8,17 @@ import "./App.css";
 // dotenv.config();
 
 function App() {
+  const [users, setUsers] = useState(null);
   const [count, setCount] = useState(0);
   const [dataMessage, setDataMessage] = useState(null);
 
   // * Import server port
   const serverURL = import.meta.env.VITE_BASE_SERVER_URL;
   const dataURL = `${serverURL}/api/data`;
+  const userURL = `${serverURL}/api/user`;
 
   // * Initial server setup - data example
-  const fetchDataMessage = async (url) => {
+  const performFetch = async (url) => {
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -31,18 +33,17 @@ function App() {
 
   useEffect(() => {
     const getDataMessage = async (url) => {
-      const currentResponseMessage = await fetchDataMessage(url);
-      setDataMessage(currentResponseMessage);
-
-      // TODO Remove console.log's later -- set a rule in prettier/eslint/config
-      console.log(import.meta.env.VITE_BASE_SERVER_URL);
-      console.log("Extra: This is the full fetch url we get:", url);
+      const currentResponse = await performFetch(url);
+      setDataMessage(currentResponse);
     };
-
-    // * Use dataURL as argument
+    const getUsersData = async (url) => {
+      const currentResponse = await performFetch(url);
+      setUsers(currentResponse.result);
+    };
+    // ***** Use dataURL and userURL as argument
     getDataMessage(dataURL);
-  }, [dataURL]);
-  // * Initial server setup - data example
+    getUsersData(userURL);
+  }, [dataURL, userURL]);
 
   return (
     <>
@@ -56,6 +57,17 @@ function App() {
       </div>
       <h1>Vite + React + Node</h1>
       <h2>{dataMessage ? dataMessage.message : "Loading..."}</h2>
+      <h3>These are the users:</h3>
+      <ul>
+        {users &&
+          users.map((user) => {
+            return (
+              <li key={user._id}>
+                {user.name} ({user.email})
+              </li>
+            );
+          })}
+      </ul>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
