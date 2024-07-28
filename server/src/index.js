@@ -1,14 +1,13 @@
 import dotenv from "dotenv";
+dotenv.config();
+
 import { URL } from "url";
 import express from "express";
 import app from "./app.js";
 import connectDB from "./db/connectDB.js";
 
-dotenv.config();
-
 // * The environment should set the port
 const port = process.env.PORT;
-
 if (port == null) {
   // If this fails, make sure you have created the `.env` files in the right place with the PORT set
   console.error(
@@ -17,9 +16,19 @@ if (port == null) {
   process.exit(1); // Exit the process if PORT is not defined
 }
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+// * Start Server and Connect to Database
+const startServer = async () => {
+  try {
+    await connectDB();
+    app.listen(port, () => {
+      console.log(
+        `\n\u001b[1mServer\u001b[22m started on port \n\u001b[36mhttp://localhost:\u001b[1m${port}\u001b[22m/api/\u001b[0m`
+      );
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 // * Host our client code for Heroku
 /**
@@ -39,33 +48,6 @@ if (process.env.NODE_ENV === "production") {
     )
   );
 }
-
-// app.listen(port, (err) => {
-//   if (err) {
-//     console.error("Failed to start server:", err);
-//   } else {
-//     console.log(`Server started on port http://localhost:${port}/`);
-//   }
-// });
-
-// * Start Server and Connect to Database
-const startServer = async () => {
-  try {
-    // TODO Create Database Connection
-    await connectDB();
-    app.listen(port, (err) => {
-      if (err) {
-        console.error(`\n\u001b[1;31mFailed to start server: ${err}\u001b[0m`);
-      } else {
-        console.log(
-          `\n\u001b[1mServer\u001b[22m started on port \n\u001b[36mhttp://localhost:\u001b[1m${port}\u001b[22m/api/\u001b[0m`
-        );
-      }
-    });
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 // * Start the server
 startServer();
