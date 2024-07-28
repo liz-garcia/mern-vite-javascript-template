@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { URL } from "url";
 import express from "express";
 import app from "./app.js";
-import connectDB from "./db/connectDB.js";
+// import connectDB from "./db/connectDB.js";
 
 dotenv.config();
 
@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === "production") {
 const startServer = async () => {
   try {
     // TODO Create Database Connection
-    await connectDB();
+    // await connectDB();
     app.listen(port, (err) => {
       if (err) {
         console.error(`\n\u001b[1;31mFailed to start server: ${err}\u001b[0m`);
