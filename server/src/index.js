@@ -2,10 +2,11 @@ import dotenv from "dotenv";
 import { URL } from "url";
 import express from "express";
 import app from "./app.js";
+import connectDB from "./db/connectDB.js";
 
 dotenv.config();
 
-// The environment should set the port
+// * The environment should set the port
 const port = process.env.PORT;
 
 if (port == null) {
@@ -39,10 +40,32 @@ if (process.env.NODE_ENV === "production") {
   );
 }
 
-app.listen(port, (err) => {
-  if (err) {
-    console.error("Failed to start server:", err);
-  } else {
-    console.log(`Server started on port http://localhost:${port}/`);
+// app.listen(port, (err) => {
+//   if (err) {
+//     console.error("Failed to start server:", err);
+//   } else {
+//     console.log(`Server started on port http://localhost:${port}/`);
+//   }
+// });
+
+// * Start Server and Connect to Database
+const startServer = async () => {
+  try {
+    // TODO Create Database Connection
+    await connectDB();
+    app.listen(port, (err) => {
+      if (err) {
+        console.error(`\n\u001b[1;31mFailed to start server: ${err}\u001b[0m`);
+      } else {
+        console.log(
+          `\n\u001b[1mServer\u001b[22m started on port \n\u001b[36mhttp://localhost:\u001b[1m${port}\u001b[22m/api/\u001b[0m`
+        );
+      }
+    });
+  } catch (error) {
+    console.error(error);
   }
-});
+};
+
+// * Start the server
+startServer();
