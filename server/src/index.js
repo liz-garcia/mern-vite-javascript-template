@@ -6,37 +6,39 @@ import express from "express";
 import app from "./app.js";
 import connectDB from "./db/connectDB.js";
 
-// * The environment should set the port
+// * *************** The environment should set the port ***************
 const port = process.env.PORT;
 if (port == null) {
-  // If this fails, make sure you have created the `.env` files in the right place with the PORT set
-  console.error(
-    new Error("Cannot find a PORT number, did you create the .env files?")
-  );
+  // Make sure `.env` files are created in the right place with the PORT set.
+  console.error(new Error("PORT number not found. Please setup .env files."));
   process.exit(1); // Exit the process if PORT is not defined
 }
 
-// * Start Server and Connect to Database
+// * *************** Start Server and Connect to Database ***************
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(port, () => {
-      console.log(
-        `\n\u001b[1mServer\u001b[22m started on port \n\u001b[36mhttp://localhost:\u001b[1m${port}\u001b[22m/api/\u001b[0m`
-      );
+    app.listen(port, (err) => {
+      if (err) {
+        console.error(`\n\u001b[1;31mFailed to start server: ${err}\u001b[0m`);
+        process.exit(1); // Exit the process if the server fails to start
+      } else {
+        console.log(
+          `\n\u001b[1mServer\u001b[22m started on port \n\u001b[36mhttp://localhost:\u001b[1m${port}\u001b[22m/api/\u001b[0m`
+        );
+      }
     });
   } catch (error) {
-    console.error(error);
+    console.error(
+      `\n\u001b[1;31mError connecting to the database: ${error}\u001b[0m`
+    );
+    process.exit(1); // Exit the process if error is encountered
   }
 };
 
-// * Host our client code for Heroku
-/**
- * We only want to host our client code when in production mode as we then want to use the production build that is built in the dist folder.
- * When not in production, don't host the files, but the development version of the app can connect to the backend itself.
- */
-
-// Serve static files and handle client-side routing in production mode
+// * *************** Host our client code for Heroku ***************
+/* We only want to host our client code when in production mode as we then want to use the production build that is built in the dist folder. When not in production, don't host the files, but the development version of the app can connect to the backend itself. */
+// * Serve static files and handle client-side routing in production mode
 if (process.env.NODE_ENV === "production") {
   app.use(
     express.static(new URL("../../client/dist", import.meta.url).pathname)
