@@ -8,18 +8,9 @@ TopCV is a web application for creating one-page ATS-friendly resumes.
 
 ## System Overview
 
-### System Design
-
-#### High-Level Architecture
-
-The system is composed of a client, a server, and a database. The client interacts with the server via RESTful API endpoints, and the server manages data storage and retrieval from the MongoDB database.
-
-#### Components
-
-- **Client:** Vite, React, Redux, JavaScript
+- **Client:** Vite, React, Redux, JavaScript, Tailwind CSS
 - **Server:** NodeJS, Express, WebSockets
 - **Database:** MongoDB, Mongoose
 - **Testing:** Jest, Cypress
-- **CSS Framework:** Tailwind CSS
 - **Deployment:** Heroku
-- **AI Solutions Provider:** Gemini API
+- **AI Provider:** Gemini API
