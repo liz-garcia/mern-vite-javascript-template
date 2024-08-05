@@ -4,6 +4,6 @@
   "dictionaryDefinitions": [],
   "dictionaries": [],
   "words": [],
-  "ignoreWords": ["lastname", "postbuild"],
+  "ignoreWords": ["postbuild"],
   "import": []
 }
