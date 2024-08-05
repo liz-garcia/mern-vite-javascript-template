@@ -63,7 +63,7 @@ function App() {
           users.map((user) => {
             return (
               <li key={user._id}>
-                {user.name} ({user.email})
+                {user.name} {user.lastName} ({user.email})
               </li>
             );
           })}
