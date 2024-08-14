@@ -10,6 +10,7 @@ export default defineConfig({
   plugins: [react()],
   // Default is "" because on our heroku servers
   // we want to have it default to our current URL
+  // Test if we really need the define property:
   // define: {
   //   "import.meta.env.VITE_BASE_SERVER_URL": JSON.stringify(
   //     process.env.NODE_ENV === "production"
