@@ -10,11 +10,11 @@ export default defineConfig({
   plugins: [react()],
   // Default is "" because on our heroku servers
   // we want to have it default to our current URL
-  define: {
-    "import.meta.env.VITE_BASE_SERVER_URL": JSON.stringify(
-      process.env.NODE_ENV === "production"
-        ? process.env.UI_BASE_URL || ""
-        : process.env.VITE_BASE_SERVER_URL || ""
-    ),
-  },
+  // define: {
+  //   "import.meta.env.VITE_BASE_SERVER_URL": JSON.stringify(
+  //     process.env.NODE_ENV === "production"
+  //       ? process.env.UI_BASE_URL || ""
+  //       : process.env.VITE_BASE_SERVER_URL || ""
+  //   ),
+  // },
 });
