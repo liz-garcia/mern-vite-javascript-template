@@ -13,7 +13,7 @@ function App() {
   const [dataMessage, setDataMessage] = useState(null);
 
   // * Import server port
-  const serverURL = import.meta.env.VITE_BASE_SERVER_URL;
+  const serverURL = import.meta.env.VITE_BASE_URL;
   const dataURL = `${serverURL}/api/data`;
   const userURL = `${serverURL}/api/user`;
 
