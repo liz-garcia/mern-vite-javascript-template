@@ -5,11 +5,8 @@
  * we only need to adjust this file.
  */
 
-import dotenv from "dotenv";
-dotenv.config();
-
 // * Utility to check if the environment is production.
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = import.meta.env.NODE_ENV === "production";
 
 // * ANSI color codes for styling
 const styles = {
