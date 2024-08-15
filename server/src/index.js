@@ -1,3 +1,5 @@
+import { logInfo, logError } from "../src/utils/logging.js";
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -10,7 +12,7 @@ import connectDB from "./db/connectDB.js";
 const port = process.env.PORT;
 if (port == null) {
   // Make sure `.env` files are created in the right place with the PORT set.
-  console.error(new Error("PORT number not found. Please setup .env files."));
+  logError(new Error("PORT number not found. Please setup .env files."));
   process.exit(1); // Exit the process if PORT is not defined
 }
 
@@ -20,18 +22,14 @@ const startServer = async () => {
     await connectDB();
     app.listen(port, (err) => {
       if (err) {
-        console.error(`\n\u001b[1;31mFailed to start server: ${err}\u001b[0m`);
+        logError(`Failed to start server: ${err}`);
         process.exit(1); // Exit the process if the server fails to start
       } else {
-        console.log(
-          `\n\u001b[1mServer\u001b[22m started on port \n\u001b[36mhttp://localhost:\u001b[1m${port}\u001b[22m/api/\u001b[0m`
-        );
+        logInfo(`Server started on port http://localhost:${port}/api/`);
       }
     });
   } catch (error) {
-    console.error(
-      `\n\u001b[1;31mError connecting to the database: ${error}\u001b[0m`
-    );
+    logError(`Error connecting to the database: ${error}`);
     process.exit(1); // Exit the process if error is encountered
   }
 };

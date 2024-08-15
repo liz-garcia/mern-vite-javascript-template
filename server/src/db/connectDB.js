@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
+import { logInfo, logError } from "../utils/logging.js";
 
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URL);
-    console.log("\x1b[32m%s\x1b[0m", "MongoDB connected successfully");
+    logInfo("MongoDB connection successful.");
   } catch (error) {
-    console.error(
-      "\x1b[31m%s\x1b[0m",
-      "Failed to connect to MongoDB",
-      error.message
-    );
+    logError(error.message);
     process.exit(1);
   }
 };

@@ -1,3 +1,5 @@
+import { logError } from "./utils/logging.js";
+
 import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
@@ -22,12 +24,12 @@ function App() {
     try {
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        logError(new Error("Network response was not ok."));
       }
       const responseMessage = await response.json();
       return responseMessage;
     } catch (error) {
-      console.error("Fetch error:", error);
+      logError(new Error(error));
     }
   };
 
