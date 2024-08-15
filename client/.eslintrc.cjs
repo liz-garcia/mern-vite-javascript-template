@@ -1,3 +1,12 @@
+/**
+ * Eslint configuration file for the client.
+ * Note: If a change is made here, consider if it should be applied in the server config file as well.
+ *
+ * ESlint is a way to enforce certain code rules to keep the code base consistent.
+ *
+ * Have a look at this project repo's README or https://eslint.org/ for more information.
+ */
+
 module.exports = {
   root: true,
   env: { browser: true, es2020: true, node: true },
@@ -19,5 +28,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     quotes: ["error", "double"],
+    // * Receive warnings for console.log. Can also be set to "error".
+    "no-console": "warn",
   },
 };
