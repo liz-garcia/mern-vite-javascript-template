@@ -5,7 +5,7 @@
  * we only need to adjust this file.
  */
 
-// * Utility to check if the environment is production.
+// * Utility to check with Vite if the environment is production.
 const isProduction = import.meta.env.NODE_ENV === "production";
 
 // * ANSI color codes for styling
