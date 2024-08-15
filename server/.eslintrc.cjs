@@ -1,9 +1,10 @@
 /**
- * This is our eslint configuration file for the server.
- * Note: If you make a change here, think about if it should be applied in the client config file as well.
+ * Eslint configuration file for the server.
+ * Note: If a change is made here, consider if it should be applied in the client config file as well.
  *
  * ESlint is a way to enforce certain code rules to keep the code base consistent.
- * Have a look at our project repo README or https://eslint.org/ for more information
+ *
+ * Have a look at this project repo's README or https://eslint.org/ for more information.
  */
 
 module.exports = {
@@ -19,14 +20,15 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    // prettier does double quotes so make that the default
+    // * Prettier does double quotes so make that the default
     quotes: ["error", "double"],
-    // block any code that is not formatted according to prettier formatting rules
+    // * Block any code that is not formatted according to prettier formatting rules
     "prettier/prettier": "error",
-    // turned off the rule to make everything a default export
+    // * Turned off the rule to make everything a default export
     "import/prefer-default-export": "off",
-    // turned off the rule that you should not have file extensions. For modules in node this is actually required
+    // * Turned off the rule that you should not have file extensions. For modules in node this is actually required.
     "import/extensions": "off",
-    // "no-console": "warn", // Uncomment to receive warnings for console.log
+    // * Receive warnings for console.log. Can also be set to "error".
+    "no-console": "warn",
   },
 };
