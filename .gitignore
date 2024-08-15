@@ -24,7 +24,7 @@ coverage
 
 # Never push our environment variables
 .env
-.env*
+# .env*
 .env.development
 .env.production
 .env.test
