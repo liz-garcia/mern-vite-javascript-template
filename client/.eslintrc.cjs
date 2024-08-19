@@ -29,7 +29,7 @@ module.exports = {
     ],
     quotes: ["error", "double"],
     // * Receive warnings for console.log.
-    // * Can also be set to "error".
-    "no-console": "warn",
+    // * Can also be set to "warn" or "error".
+    "no-console": "error",
   },
 };
