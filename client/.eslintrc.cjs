@@ -28,7 +28,8 @@ module.exports = {
       { allowConstantExport: true },
     ],
     quotes: ["error", "double"],
-    // * Receive warnings for console.log. Can also be set to "error".
+    // * Receive warnings for console.log.
+    // * Can also be set to "error".
     "no-console": "warn",
   },
 };
