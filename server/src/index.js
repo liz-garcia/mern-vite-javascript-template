@@ -9,7 +9,7 @@ import app from "./app.js";
 import connectDB from "./db/connectDB.js";
 
 // * *************** The environment should set the port ***************
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 if (port == null) {
   // Make sure `.env` files are created in the right place with the PORT set.
   logError(new Error("PORT number not found. Please setup .env files."));

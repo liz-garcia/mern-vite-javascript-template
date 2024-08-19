@@ -28,7 +28,8 @@ module.exports = {
     "import/prefer-default-export": "off",
     // * Turned off the rule that you should not have file extensions. For modules in node this is actually required.
     "import/extensions": "off",
-    // * Receive warnings for console.log. Can also be set to "error".
+    // * Receive warnings for console.log.
+    // * Can also be set to "error".
     "no-console": "warn",
   },
 };

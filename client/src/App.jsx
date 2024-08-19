@@ -5,10 +5,6 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-// * Load environment variables from .env file
-// import dotenv from "dotenv";
-// dotenv.config();
-
 function App() {
   const [users, setUsers] = useState(null);
   const [count, setCount] = useState(0);
