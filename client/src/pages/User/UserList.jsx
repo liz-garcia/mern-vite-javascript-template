@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch.js";
 
 const UserList = () => {
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/user",
     (response) => {
       setUsers(response.result);
+      setIsLoaded(true);
     }
   );
 
@@ -24,31 +26,39 @@ const UserList = () => {
   let content = null;
 
   if (isLoading) {
-    content = <div>loading...</div>;
-  } else if (error != null) {
+    content = <div>Loading...</div>;
+  } else if (error) {
     content = <div>Error: {error.toString()}</div>;
-  } else {
+  } else if (
+    !isLoading &&
+    isLoaded &&
+    Array.isArray(users) &&
+    users.length === 0
+  ) {
+    content = <div>No users found.</div>;
+  } else if (users.length > 0) {
     content = (
-      <>
-        <h1>These are the users</h1>
-        <ul data-loaded={users != null}>
-          {users &&
-            users.map((user) => {
-              return (
-                <li key={user._id} data-element-id={user._id}>
-                  {user.name} ({user.email})
-                </li>
-              );
-            })}
-        </ul>
-        {/* <Link to="/user/create">
-          <button>Create new user</button>
-        </Link> */}
-      </>
+      <ul>
+        {users.map((user) => (
+          <li key={user._id}>
+            {user.name} ({user.email})
+          </li>
+        ))}
+      </ul>
     );
+  } else {
+    content = <div>Loading...</div>;
   }
 
-  return <div>{content}</div>;
+  return (
+    <>
+      <h1>These are the users</h1>
+      <div>{content}</div>
+      {/* <Link to="/user/create">
+          <button>Create new user</button>
+        </Link> */}
+    </>
+  );
 };
 
 export default UserList;
