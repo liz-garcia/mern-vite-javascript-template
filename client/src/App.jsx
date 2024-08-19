@@ -1,35 +1,26 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+// import Nav from "./components/Nav/Nav.jsx";
+import Home from "./pages/Home/Home.jsx";
+import UserList from "./pages/User/UserList.jsx";
+// import CreateUser from "./pages/User/CreateUser.jsx";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+// * Client App Router
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noopener noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + Node</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/* Context Providers would go above here, right after line 10 */}
+      {/* Global layout components go here */}
+      {/* <Nav /> */}
+      {/* AppRoutes could also be handled in a different file, and later imported here. */}
+      <Routes>
+        {/* Pages go here */}
+        <Route path="/" element={<Home />} />
+        <Route path="/user/list" element={<UserList />} />
+        {/* <Route path="/user/create" element={<CreateUser />} /> */}
+      </Routes>
     </>
   );
-}
+};
 
 export default App;
