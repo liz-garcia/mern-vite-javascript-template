@@ -19,7 +19,9 @@
 
 import { useState, useEffect, useRef } from "react";
 
+// * Use Fetch Hook
 const useFetch = (route, onReceived) => {
+  // * Initial state for `error` and `isLoading`
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,15 +33,16 @@ const useFetch = (route, onReceived) => {
     );
   }
 
-  // * We will store the AbortController in a ref so that it persists across renders
+  // We will store the AbortController in a ref so that it persists across renders
   const controllerRef = useRef(null);
 
+  // * Perform Fetch
   const performFetch = (options) => {
     setError(null);
     setIsLoading(true);
 
-    // * Create a new AbortController for each fetch
-    // * We use the AbortController which is supported by all modern browsers to handle cancellations.
+    // Create a new AbortController for each fetch
+    // We use the AbortController which is supported by all modern browsers to handle cancellations.
     // For more info: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
     const controller = new AbortController();
     controllerRef.current = controller;
@@ -52,12 +55,13 @@ const useFetch = (route, onReceived) => {
       },
     };
 
-    // * Import VITE_BASE_URL
+    // Import VITE_BASE_URL
     const baseURL = import.meta.env.VITE_BASE_URL;
 
-    // * We add the /api subsection here to make it a single point of change if our configuration changes
+    // We add the /api subsection here to make it a single point of change if our configuration changes
     const url = `${baseURL}/api${route}`;
 
+    // ***** Fetch data *****
     const fetchData = async () => {
       try {
         const res = await fetch(url, { ...baseOptions, ...options, signal });
@@ -92,6 +96,7 @@ const useFetch = (route, onReceived) => {
     fetchData();
   };
 
+  // * Cancel fetch
   const cancelFetch = () => {
     if (controllerRef.current) {
       controllerRef.current.abort();

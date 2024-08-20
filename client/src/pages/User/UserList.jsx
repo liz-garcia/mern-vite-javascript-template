@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch.js";
 
 const UserList = () => {
-  const [users, setUsers] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [users, setUsers] = useState(null);
   const { isLoading, error, performFetch, cancelFetch } = useFetch(
     "/user",
     (response) => {
       setUsers(response.result);
-      setIsLoaded(true);
     }
   );
 
@@ -19,7 +17,7 @@ const UserList = () => {
 
     return cancelFetch;
 
-    // TODO Add explanation for the following:
+    // performFetch and cancelFetch are stable functions provided by useFetch hook. They will not change, so no dependencies are needed.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -29,14 +27,7 @@ const UserList = () => {
     content = <div>Loading...</div>;
   } else if (error) {
     content = <div>Error: {error.toString()}</div>;
-  } else if (
-    !isLoading &&
-    isLoaded &&
-    Array.isArray(users) &&
-    users.length === 0
-  ) {
-    content = <div>No users found.</div>;
-  } else if (users.length > 0) {
+  } else if (users && users.length > 0) {
     content = (
       <ul>
         {users.map((user) => (
@@ -46,7 +37,10 @@ const UserList = () => {
         ))}
       </ul>
     );
+  } else if (users && users.length === 0) {
+    content = <div>No users found.</div>;
   } else {
+    // Adding this condition due to React.StrictMode. For scenarios where double rendering of Effects make take place. We show the user we are attempting to load the data.
     content = <div>Loading...</div>;
   }
 
