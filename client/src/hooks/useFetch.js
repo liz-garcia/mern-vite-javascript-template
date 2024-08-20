@@ -1,7 +1,9 @@
 // * useFetch hook designed by HackYourFuture
 // * HYF final-project-template: https://github.com/HackYourFuture/final-project-template
-// Slight modifications done to make it work with Vite.
-// Also modified the use of AbortController for scenarios where Double Rendering of Effects make take place. This bug was identified with React.StrictMode on main.jsx.
+// Slight modifications done to make it work with Vite:
+// -> Modified import statement for .env variables
+// -> Modified the use of AbortController for scenarios where Double Rendering of Effects make take place (for example, due to React.StrictMode on development mode.)
+// -> Added extra validation for arguments in our custom hook
 
 /**
  * Our useFetch hook should be used for all communication with the server.
@@ -24,6 +26,15 @@ const useFetch = (route, onReceived) => {
   // * Initial state for `error` and `isLoading`
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Validating arguments
+  if (typeof route !== "string") {
+    throw new Error("useFetch: route must be a string");
+  }
+
+  if (typeof onReceived !== "function") {
+    throw new Error("useFetch: onReceived must be a function");
+  }
 
   if (route.includes("api/")) {
     // We add this check here to provide a better error message if you accidentally add the api part
