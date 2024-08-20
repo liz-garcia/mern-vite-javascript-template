@@ -20,16 +20,16 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    // * Prettier does double quotes so make that the default
+    // Prettier does double quotes so make that the default
     quotes: ["error", "double"],
-    // * Block any code that is not formatted according to prettier formatting rules
+    // Block any code that is not formatted according to prettier formatting rules
     "prettier/prettier": "error",
-    // * Turned off the rule to make everything a default export
+    // Turned off the rule to make everything a default export
     "import/prefer-default-export": "off",
-    // * Turned off the rule that you should not have file extensions. For modules in node this is actually required.
+    // Turned off the rule that you should not have file extensions. For modules in node this is actually required.
     "import/extensions": "off",
-    // * Receive warnings for console.log.
-    // * Can also be set to "error".
-    "no-console": "warn",
+    // Receive warnings for console.log.
+    // Can also be set to ""warn" or "error".
+    "no-console": "error",
   },
 };
