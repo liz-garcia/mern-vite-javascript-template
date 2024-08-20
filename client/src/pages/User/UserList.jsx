@@ -49,8 +49,8 @@ const UserList = () => {
       <h1>These are the users</h1>
       <div>{content}</div>
       {/* <Link to="/user/create">
-          <button>Create new user</button>
-        </Link> */}
+        <button>Create new user</button>
+      </Link> */}
     </>
   );
 };
