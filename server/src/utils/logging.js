@@ -20,7 +20,7 @@ const styles = {
   reset: "\x1b[0m",
 };
 
-// * logInfo should be used to log anything that can be used for debugging but is not a problem.
+// logInfo should be used to log anything that can be used for debugging but is not a problem.
 export const logInfo = (message) => {
   if (!isProduction) {
     const styledMessage = `${styles.bold}${styles.cyan}${message}${styles.reset}`;
@@ -29,7 +29,7 @@ export const logInfo = (message) => {
   }
 };
 
-//  * logWarning should be used to log anything that signals a problem that is not app breaking.
+// logWarning should be used to log anything that signals a problem that is not app breaking.
 export const logWarning = (message) => {
   if (!isProduction) {
     const styledMessage = `${styles.bold}${styles.yellow}${message}${styles.reset}`;
@@ -38,7 +38,7 @@ export const logWarning = (message) => {
   }
 };
 
-//  * logError should be used to log anything that is app-breaking.
+// logError should be used to log anything that is app-breaking.
 export const logError = (errorMessage) => {
   if (!isProduction) {
     let styledMessage;
