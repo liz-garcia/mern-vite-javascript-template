@@ -5,8 +5,8 @@
 ```
 ## System Overview
 
-- **Client:** Vite, React, JavaScript, Vanilla CSS
-- **Server:** NodeJS, Express, WebSockets
-- **Database:** MongoDB, Mongoose
+- **Client:** Vite, ReactJS, JavaScript, Vanilla CSS
+- **Server:** NodeJS, ExpressJS
+- **Database:** Mongoose
 - **Testing:** `🚧 pending task`
 - **Deployment:** Heroku
