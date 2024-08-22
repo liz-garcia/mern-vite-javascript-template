@@ -1,16 +1,12 @@
-# TopCV
+# mern-vite-javascript-template
 
 ```text
 🚧 Work in progress.
 ```
-
-TopCV is a web application for creating one-page ATS-friendly resumes.
-
 ## System Overview
 
-- **Client:** Vite, React, Redux, JavaScript, Tailwind CSS
+- **Client:** Vite, React, JavaScript, Vanilla CSS
 - **Server:** NodeJS, Express, WebSockets
 - **Database:** MongoDB, Mongoose
-- **Testing:** Jest, Cypress
+- **Testing:** `🚧 pending task`
 - **Deployment:** Heroku
-- **AI Provider:** Gemini API
